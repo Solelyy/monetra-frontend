@@ -80,11 +80,11 @@ export default function RecentTransactions({
                   </div>
 
                   <div>
-                    <p className="text-sm font-semibold text-foreground">
+                    <p className="text-sm font-semibold text-foreground text-left">
                       {transaction.description}
                     </p>
 
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-muted-foreground text-left">
                       {new Date(transaction.timestamp).toLocaleDateString(
                         "en-PH",
                         {
