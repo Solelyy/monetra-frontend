@@ -1,15 +1,14 @@
 export type Transaction = {
   id: string;
-  type: "deposit" | "withdraw" | "transfer";
+  type: "DEPOSIT" | "WITHDRAW" | "TRANSFER";
   amount: number;
   description: string;
   timestamp: string;
-  status: "completed" | "pending" | "failed";
 };
 
 export type AccountDetails = {
-  accountNumber: number;
-  accountName: string;
-  accountBalance: number;
-  recentTransactions: Transaction[];
+  accountNumber?: number;
+  accountName?: string;
+  accountBalance?: number;
+  recentTransactions?: Transaction[];
 };

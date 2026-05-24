@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { dashboardApi } from "../dashboardApi";
 import type { AccountDetails } from "../types";
-import { Card } from "@/components/ui/card";
+import CardAction from "./CardAction";
+import Greeting from "./Greeting";
+import RecentTransactions from "./RecentTransactions";
 
 export default function Dashboard() {
   const [account, setAccount] = useState<AccountDetails | null>(null);
@@ -17,11 +19,23 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="text-left">{`Welcome, ${account?.accountName}!`}</div>
+      <Greeting name={account?.accountName} />
+      <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+        {/*Card & Actions */}
+        <div className="flex-1">
+          <CardAction
+            accountBalance={account?.accountBalance}
+            accountNumber={account?.accountNumber}
+          />
+        </div>
 
-      <Card>
-        <div className=""></div>
-      </Card>
+        {/*Recent Transactions*/}
+        <div className="flex-1">
+          <RecentTransactions
+            recentTransactions={account?.recentTransactions}
+          />
+        </div>
+      </div>
     </>
   );
 }

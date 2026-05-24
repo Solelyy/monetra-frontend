@@ -8,7 +8,7 @@ export default function AppLayout() {
         <Navbar />
       </header>
 
-      <main className="flex flex-col p-6 gap-4">
+      <main className="flex flex-col p-6 space-y-8">
         <Outlet />
       </main>
     </div>
