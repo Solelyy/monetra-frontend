@@ -44,13 +44,12 @@ export default function DepositForm({ onSuccess }: Props) {
     if (!isAmountValid) return;
 
     try {
-      await mutateAsync(parsedAmount);
+      const result = await mutateAsync(parsedAmount);
 
       onSuccess({
-        amount: parsedAmount,
-        referenceNumber: crypto.randomUUID().slice(0, 8).toUpperCase(),
-
-        depositedAt: new Date().toLocaleString(),
+        amount: result.amount,
+        referenceNumber: result.referenceNumber,
+        timestamp: result.timestamp,
       });
     } catch (e) {
       toast.error("Unable to deposit. Please try again.");
