@@ -1,21 +1,10 @@
-import { useEffect, useState } from "react";
-import { dashboardApi } from "../dashboardApi";
-import type { AccountDetails } from "../types";
 import CardAction from "./CardAction";
 import Greeting from "./Greeting";
 import RecentTransactions from "./RecentTransactions";
+import { useDashboard } from "../useDashboard";
 
 export default function Dashboard() {
-  const [account, setAccount] = useState<AccountDetails | null>(null);
-
-  useEffect(() => {
-    const load = async () => {
-      const data = await dashboardApi();
-      setAccount(data);
-    };
-
-    load();
-  }, []);
+  const { data: account, isLoading, error } = useDashboard();
 
   return (
     <>
