@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import CardAccount from "./CardDetails";
 import Actions from "./Actions";
-import type { AccountDetails } from "../types";
+import type { AccountDetails } from "../../../lib/general-types";
 
 export default function CardAction({
   accountNumber,

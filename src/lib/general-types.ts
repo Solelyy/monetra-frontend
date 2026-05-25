@@ -1,6 +1,6 @@
 export type Transaction = {
   id: string;
-  type: "DEPOSIT" | "WITHDRAW" | "TRANSFER";
+  type: TransactionType;
   amount: number;
   description: string;
   timestamp: string;
@@ -12,3 +12,5 @@ export type AccountDetails = {
   accountBalance?: number;
   recentTransactions?: Transaction[];
 };
+
+export type TransactionType = "DEPOSIT" | "TRANSFER" | "WITHDRAW";

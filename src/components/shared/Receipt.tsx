@@ -11,24 +11,33 @@ import { Button } from "@/components/ui/button";
 
 import { Link } from "react-router-dom";
 
-import type { DepositReceiptData } from "../types";
+import type { DepositReceiptData } from "@/features/deposit/types";
 import { formatDateTime } from "@/lib/date-format";
+import type { TransactionType } from "@/lib/general-types";
 
 type Props = {
   receipt: DepositReceiptData;
+  type: TransactionType;
 };
 
-export default function DepositReceipt({ receipt }: Props) {
+export default function Receipt({ receipt, type }: Props) {
+  const title =
+    type === "DEPOSIT"
+      ? "Deposit"
+      : type === "TRANSFER"
+        ? "Transfer"
+        : "Withdaw";
+
   return (
     <div className="flex min-h-screen items-start justify-center px-4 pt-5">
       <Card className="flex w-full max-w-md min-h-[450px] md:min-h-[500px] flex-col">
         <CardHeader>
           <CardTitle className="text-lg font-semibold">
-            Deposit Successful
+            {`${title} Successful!`}
           </CardTitle>
 
           <CardDescription>
-            Your deposit has been processed successfully
+            {`Your ${title.toLowerCase()} has been processed successfully`}
           </CardDescription>
         </CardHeader>
 

@@ -1,4 +1,4 @@
-import type { AccountDetails } from "./types";
+import type { AccountDetails } from "../../lib/general-types";
 
 const dummyAccount: AccountDetails = {
   accountName: "Jessa Gozun",

@@ -8,7 +8,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
-import type { Transaction } from "../types";
+import type { Transaction } from "../../../lib/general-types";
 
 type RecentTransactionsProps = {
   recentTransactions?: Transaction[];

@@ -13,16 +13,15 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-import { useDepositMutation } from "../useDepositMutation";
-
-import type { DepositReceiptData } from "../types";
+import { useWithdrawMutation } from "../useWithdrawMutation";
+import type { DepositReceiptData } from "@/features/deposit/types";
 import { toast } from "sonner";
 
 type Props = {
   onSuccess: (receipt: DepositReceiptData) => void;
 };
 
-export default function DepositForm({ onSuccess }: Props) {
+export default function WithdrawForm({ onSuccess }: Props) {
   const [amount, setAmount] = useState("");
 
   const MIN_AMOUNT = 50;
@@ -36,7 +35,7 @@ export default function DepositForm({ onSuccess }: Props) {
     parsedAmount >= MIN_AMOUNT &&
     parsedAmount <= MAX_AMOUNT;
 
-  const { mutateAsync, isPending } = useDepositMutation();
+  const { mutateAsync, isPending } = useWithdrawMutation();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -52,7 +51,7 @@ export default function DepositForm({ onSuccess }: Props) {
         timestamp: result.timestamp,
       });
     } catch (e) {
-      toast.error("Unable to deposit. Please try again.");
+      toast.error("Unable to withdraw. Please try again.");
       console.error(e);
     }
   };
@@ -62,9 +61,11 @@ export default function DepositForm({ onSuccess }: Props) {
       <Card className="flex w-full max-w-md min-h-[450px] md:min-h-[500px] flex-col">
         <form onSubmit={handleSubmit} className="flex flex-1 flex-col">
           <CardHeader>
-            <CardTitle className="text-lg font-semibold">Deposit</CardTitle>
+            <CardTitle className="text-lg font-semibold">Withdraw</CardTitle>
 
-            <CardDescription>Deposit an amount to your account</CardDescription>
+            <CardDescription>
+              Withdraw an amount from your account
+            </CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-4">
@@ -134,7 +135,7 @@ export default function DepositForm({ onSuccess }: Props) {
                 className="w-full"
                 size="lg"
               >
-                {isPending ? "Depositing..." : "Deposit"}
+                {isPending ? "Withdrawing..." : "Withdraw"}
               </Button>
             </div>
           </CardFooter>
