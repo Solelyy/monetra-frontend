@@ -12,7 +12,7 @@ async function mockDeposit(amount: number) {
     amount,
     message: "Deposit successful",
     timestamp: "2026-05-24T15:05:12Z",
-    referenceNumber: "123457790",
+    referenceNumber: "1234577909999999998888776669999",
   };
 }
 

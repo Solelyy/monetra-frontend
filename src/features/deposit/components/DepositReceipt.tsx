@@ -34,24 +34,32 @@ export default function DepositReceipt({ receipt }: Props) {
 
         <CardContent className="flex flex-1 flex-col justify-center">
           <div className="space-y-4 rounded-lg border p-4">
-            <div className="flex items-center justify-between">
-              <p className="text-sm text-muted-foreground">Amount</p>
+            <div className="flex items-start justify-between gap-4">
+              <p className="text-sm text-muted-foreground whitespace-nowrap shrink-0">
+                Amount
+              </p>
 
-              <p className="text-sm font-medium">
+              <p className="text-sm font-medium text-right wrap-break-word min-w-0">
                 ₱{receipt.amount.toLocaleString()}
               </p>
             </div>
 
-            <div className="flex items-center justify-between">
-              <p className="text-sm text-muted-foreground">Reference No.</p>
+            <div className="flex items-start justify-between gap-4">
+              <p className="text-sm text-muted-foreground whitespace-nowrap shrink-0">
+                Reference No.
+              </p>
 
-              <p className="text-sm font-medium">{receipt.referenceNumber}</p>
+              <p className="text-sm font-medium text-right wrap-break-word min-w-0">
+                {receipt.referenceNumber}
+              </p>
             </div>
 
-            <div className="flex items-center justify-between gap-4">
-              <p className="text-sm text-muted-foreground">Date</p>
+            <div className="flex items-start justify-between gap-4">
+              <p className="text-sm text-muted-foreground whitespace-nowrap shrink-0">
+                Date
+              </p>
 
-              <p className="text-right text-sm font-medium">
+              <p className="text-right text-sm">
                 {formatDateTime(receipt.timestamp)}
               </p>
             </div>
