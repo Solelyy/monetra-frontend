@@ -4,7 +4,7 @@ import RecentTransactions from "./RecentTransactions";
 import { useDashboard } from "../useDashboard";
 
 export default function Dashboard() {
-  const { data: account, isLoading, error } = useDashboard();
+  const { data: account } = useDashboard();
 
   return (
     <>
