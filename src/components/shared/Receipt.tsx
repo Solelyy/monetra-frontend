@@ -26,13 +26,13 @@ export default function Receipt({ receipt, type }: Props) {
       ? "Deposit"
       : type === "TRANSFER"
         ? "Transfer"
-        : "Withdaw";
+        : "Withdrawal";
 
   return (
     <div className="flex min-h-screen items-start justify-center px-4 pt-5">
       <Card className="flex w-full max-w-md min-h-[450px] md:min-h-[500px] flex-col">
         <CardHeader>
-          <CardTitle className="text-lg font-semibold">
+          <CardTitle className="text-lg font-semibold text-primary">
             {`${title} Successful!`}
           </CardTitle>
 
@@ -43,6 +43,18 @@ export default function Receipt({ receipt, type }: Props) {
 
         <CardContent className="flex flex-1 flex-col justify-center">
           <div className="space-y-4 rounded-lg border p-4">
+            {type === "TRANSFER" && (
+              <div className="flex items-start justify-between gap-4">
+                <p className="text-sm text-muted-foreground whitespace-nowrap shrink-0">
+                  Recipient Account No.
+                </p>
+
+                <p className="text-sm font-medium text-right wrap-break-word min-w-0">
+                  {receipt.recipientAccountNumber}
+                </p>
+              </div>
+            )}
+
             <div className="flex items-start justify-between gap-4">
               <p className="text-sm text-muted-foreground whitespace-nowrap shrink-0">
                 Amount
@@ -52,6 +64,18 @@ export default function Receipt({ receipt, type }: Props) {
                 ₱{receipt.amount.toLocaleString()}
               </p>
             </div>
+
+            {type === "TRANSFER" && receipt.note && (
+              <div className="flex items-start justify-between gap-4">
+                <p className="text-sm text-muted-foreground whitespace-nowrap shrink-0">
+                  Note
+                </p>
+
+                <p className="text-sm font-medium text-right wrap-break-word min-w-0">
+                  {receipt.note}
+                </p>
+              </div>
+            )}
 
             <div className="flex items-start justify-between gap-4">
               <p className="text-sm text-muted-foreground whitespace-nowrap shrink-0">

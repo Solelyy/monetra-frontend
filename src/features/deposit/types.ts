@@ -2,6 +2,8 @@ export type DepositReceiptData = {
   amount: number;
   referenceNumber: string;
   timestamp: string;
+  recipientAccountNumber?: string;
+  note?: string;
 };
 
 export type DepositResponse = {
@@ -10,4 +12,6 @@ export type DepositResponse = {
   referenceNumber: string;
   timestamp: string;
   message: string;
+  recipientAccountNumber?: string;
+  note?: string;
 };

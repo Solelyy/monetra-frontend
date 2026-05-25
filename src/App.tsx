@@ -4,7 +4,7 @@ import AppLayout from "./components/layout/AppLayout";
 import Deposit from "./features/deposit/components/Deposit";
 import Withdraw from "./features/withdraw/components/Withdraw";
 import Transactions from "./features/transactions/Transactions";
-import Transfer from "./features/transfer/Transfer";
+import Transfer from "./features/transfer/components/Transfer";
 
 export default function App() {
   return (

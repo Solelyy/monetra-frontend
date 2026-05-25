@@ -13,17 +13,20 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-import { useDepositMutation } from "../useDepositMutation";
-
-import type { DepositReceiptData } from "../types";
+import { useTransferMutation } from "../useTransferMutation";
+import type { DepositReceiptData } from "@/features/deposit/types";
 import { toast } from "sonner";
+import type { TransferPayload } from "../types";
 
 type Props = {
   onSuccess: (receipt: DepositReceiptData) => void;
 };
 
-export default function DepositForm({ onSuccess }: Props) {
+export default function TransferForm({ onSuccess }: Props) {
   const [amount, setAmount] = useState("");
+  const [recipient, setRecipient] =
+    useState<TransferPayload["recipientAccountNumber"]>("");
+  const [note, setNote] = useState<TransferPayload["note"]>("");
 
   const MIN_AMOUNT = 50;
   const MAX_AMOUNT = 50_000;
@@ -36,23 +39,33 @@ export default function DepositForm({ onSuccess }: Props) {
     parsedAmount >= MIN_AMOUNT &&
     parsedAmount <= MAX_AMOUNT;
 
-  const { mutateAsync, isPending } = useDepositMutation();
+  const isRecipientValid = recipient.length === 10;
+
+  const isFormValid = isAmountValid && isRecipientValid;
+
+  const { mutateAsync, isPending } = useTransferMutation();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!isAmountValid) return;
+    if (!isFormValid) return;
 
     try {
-      const result = await mutateAsync(parsedAmount);
+      const result = await mutateAsync({
+        amount: parsedAmount,
+        recipientAccountNumber: recipient,
+        note,
+      });
 
       onSuccess({
         amount: result.amount,
         referenceNumber: result.referenceNumber,
         timestamp: result.timestamp,
+        recipientAccountNumber: result.recipientAccountNumber,
+        note: result.note,
       });
     } catch (e) {
-      toast.error("Unable to deposit. Please try again.");
+      toast.error("Unable to transfer. Please try again.");
       console.error(e);
     }
   };
@@ -62,13 +75,45 @@ export default function DepositForm({ onSuccess }: Props) {
       <Card className="flex w-full max-w-md min-h-[450px] md:min-h-[500px] flex-col">
         <form onSubmit={handleSubmit} className="flex flex-1 flex-col">
           <CardHeader>
-            <CardTitle className="text-lg font-semibold">Deposit</CardTitle>
+            <CardTitle className="text-lg font-semibold">Transfer</CardTitle>
 
-            <CardDescription>Deposit an amount to your account</CardDescription>
+            <CardDescription>
+              Transfer an amount to another account
+            </CardDescription>
           </CardHeader>
 
-          <CardContent className="space-y-4">
-            <div className="mt-8 space-y-2">
+          <CardContent className="mt-8 space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="recipient">Recipient Account Number</Label>
+
+              <Input
+                id="recipient"
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                autoComplete="off"
+                autoCorrect="off"
+                spellCheck={false}
+                value={recipient}
+                onChange={(event) => {
+                  const digitsOnly = event.target.value.replace(/\D/g, "");
+
+                  if (digitsOnly.length <= 10) {
+                    setRecipient(digitsOnly);
+                  }
+                }}
+                placeholder="Enter 10-digit account number"
+                required
+              />
+
+              {recipient.trim().length > 0 && recipient.length !== 10 ? (
+                <p className="text-destructive text-xs text-left">
+                  Account number must be 10 digits
+                </p>
+              ) : null}
+            </div>
+
+            <div className="space-y-2">
               <Label htmlFor="amount">Amount</Label>
 
               <div className="relative">
@@ -111,6 +156,34 @@ export default function DepositForm({ onSuccess }: Props) {
                 </p>
               ) : null}
             </div>
+
+            <div className="space-y-2 mb-5">
+              <Label htmlFor="note">Note (Optional)</Label>
+
+              <Input
+                id="note"
+                type="text"
+                autoComplete="off"
+                autoCorrect="off"
+                spellCheck={false}
+                value={note}
+                onChange={(event) => {
+                  const nextNote = event.target.value;
+
+                  if (nextNote.length <= 50) {
+                    setNote(nextNote);
+                  }
+                }}
+                placeholder="Add a note (max 10 characters)"
+                maxLength={10}
+              />
+
+              {note && note.length > 0 && (
+                <p className="text-muted-foreground text-xs text-left">
+                  {note.length}/10
+                </p>
+              )}
+            </div>
           </CardContent>
 
           <CardFooter className="mt-auto flex gap-2 border-t px-6 py-4">
@@ -134,7 +207,7 @@ export default function DepositForm({ onSuccess }: Props) {
                 className="w-full"
                 size="lg"
               >
-                {isPending ? "Depositing..." : "Deposit"}
+                {isPending ? "Transferring..." : "Transfer"}
               </Button>
             </div>
           </CardFooter>

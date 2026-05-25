@@ -1,11 +1,9 @@
 import { API_BASE_URL } from "@/lib/api";
 import type { DepositResponse } from "./types";
 
-// MOCK MODE - Set this to false when backend is ready
 const USE_MOCK = true;
 
 async function mockDeposit(amount: number) {
-  // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 1500));
 
   return {

@@ -107,7 +107,7 @@ export default function WithdrawForm({ onSuccess }: Props) {
               </div>
 
               {amount.trim().length > 0 && parsedAmount < MIN_AMOUNT ? (
-                <p className="text-destructive text-xs">
+                <p className="text-destructive text-xs text-left">
                   Minimum allowed amount is ₱50
                 </p>
               ) : null}

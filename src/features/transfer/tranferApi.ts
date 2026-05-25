@@ -1,23 +1,30 @@
 import { API_BASE_URL } from "@/lib/api";
 import type { DepositResponse } from "../deposit/types";
+import type { TransferPayload } from "./types";
 
 const USE_MOCK = true;
 
-async function mockWithdraw(amount: number) {
+async function mockTransfer(amount: number) {
   await new Promise((resolve) => setTimeout(resolve, 1500));
 
   return {
     success: true,
     amount,
-    message: "Withdraw successful",
+    message: "Transfer successful",
     timestamp: "2026-05-24T15:05:12Z",
     referenceNumber: "12390099",
+    note: "pambili skincare",
+    recipientAccountNumber: "0612345655",
   };
 }
 
-export async function withdrawApi(amount: number): Promise<DepositResponse> {
+export async function transferApi({
+  amount,
+  recipientAccountNumber,
+  note,
+}: TransferPayload): Promise<DepositResponse> {
   if (USE_MOCK) {
-    return mockWithdraw(amount);
+    return mockTransfer(amount);
   }
 
   const response = await fetch(`${API_BASE_URL}/`, {
@@ -26,15 +33,15 @@ export async function withdrawApi(amount: number): Promise<DepositResponse> {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(amount),
+    body: JSON.stringify({ amount, recipientAccountNumber, note }),
   });
 
   const result = await response.json();
   if (!response.ok) {
-    throw new Error("Unable to withdraw");
+    throw new Error("Unable to transfer");
   }
 
-  console.log("Withdraw response: ", result);
+  console.log("Transfer response: ", result);
 
   return result;
 }
