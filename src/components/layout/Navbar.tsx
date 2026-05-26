@@ -82,7 +82,7 @@ export default function Navbar({ isLandingPage }: Props) {
               </Link>
 
               <Link to="/signup" onClick={closeMenu}>
-                <Button className="w-full h-11 bg-emerald-600 hover:bg-emerald-700 text-white shadow-md">
+                <Button className="w-full h-11 bg-emerald-600 hover:bg-emerald-700 text-white">
                   Create Account
                 </Button>
               </Link>

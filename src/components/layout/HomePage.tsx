@@ -66,7 +66,7 @@ export default function HomePage() {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="w-full px-8 py-6 text-base rounded-lg border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+                    className="w-full py-6 text-base rounded-lg border-emerald-600 text-emerald-600 hover:bg-emerald-50"
                   >
                     Sign In
                   </Button>
@@ -75,7 +75,7 @@ export default function HomePage() {
                 <Link to="/signup" className="flex-1">
                   <Button
                     size="lg"
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-base rounded-lg"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-6 text-base rounded-lg"
                   >
                     Get Started
                   </Button>
