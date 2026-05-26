@@ -98,7 +98,9 @@ export default function HomePage() {
                         <p className="text-emerald-200 text-sm mb-2">
                           Total Balance
                         </p>
-                        <p className="text-4xl font-bold">₱12,450.50</p>
+                        <p className="text-3xl md:text-4xl font-bold">
+                          ₱12,450.50
+                        </p>
                       </div>
                       <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400">
                         <Wallet size={22} />
@@ -159,12 +161,12 @@ export default function HomePage() {
                       <IconComponent className="w-5 h-5 md:w-7 md:h-7 text-emerald-600 group-hover:text-white transition-colors duration-300" />
                     </div>
 
-                    <h3 className="text-lg md:text-xl font-semibold text-gray-900">
+                    <h3 className="text-lg text-nowrap md:text-xl font-semibold text-gray-900">
                       {feature.title}
                     </h3>
                   </div>
 
-                  <p className="text-gray-600 leading-relaxed text-nowrap">
+                  <p className="text-gray-600 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
