@@ -202,7 +202,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="w-full bg-emerald-50 py-12 border-t border-emerald-100">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col items-center text-center space-y-4">
+          <div className="flex flex-col items-center text-center gap-4">
             <p className="text-sm text-gray-700 font-medium">
               Money and Mantra
             </p>
