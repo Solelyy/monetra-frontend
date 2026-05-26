@@ -93,7 +93,7 @@ export default function HomePage() {
                 <div className="relative bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-3xl p-8 text-white shadow-2xl transform hover:scale-105 transition-transform duration-300">
                   <div className="space-y-12">
                     {/* Card Header */}
-                    <div className="flex justify-between items-start">
+                    <div className="flex justify-between items-center">
                       <div>
                         <p className="text-emerald-200 text-sm mb-2">
                           Total Balance
@@ -155,16 +155,16 @@ export default function HomePage() {
                   className="group p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 cursor-pointer"
                 >
                   <div className="flex items-center justify-start gap-4 mb-4 ">
-                    <div className="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center group-hover:bg-emerald-600 transition-colors duration-300">
-                      <IconComponent className="w-7 h-7 text-emerald-600 group-hover:text-white transition-colors duration-300" />
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-emerald-100 rounded-lg md:rounded-xl flex items-center justify-center group-hover:bg-emerald-600 transition-colors duration-300">
+                      <IconComponent className="w-5 h-5 md:w-7 md:h-7 text-emerald-600 group-hover:text-white transition-colors duration-300" />
                     </div>
 
-                    <h3 className="text-xl font-semibold text-gray-900">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-900">
                       {feature.title}
                     </h3>
                   </div>
 
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed text-nowrap">
                     {feature.description}
                   </p>
                 </div>
@@ -181,7 +181,7 @@ export default function HomePage() {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Ready to Get Started?
             </h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto py-4">
+            <p className="text-base md:text-lg text-gray-600 mb-8 max-w-2xl mx-auto py-4">
               Create your Monetra account today and experience a simple banking
               system
             </p>
@@ -203,9 +203,7 @@ export default function HomePage() {
       <footer className="w-full bg-emerald-50 py-12 border-t border-emerald-100">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col items-center text-center gap-4">
-            <p className="text-sm text-gray-700 font-medium">
-              Money and Mantra
-            </p>
+            <p className="text-base text-gray-700 font-medium">Monetra</p>
             <p className="text-xs text-gray-500">
               © 2026 Monetra. All rights reserved.
             </p>
