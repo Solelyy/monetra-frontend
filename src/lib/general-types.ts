@@ -14,3 +14,10 @@ export type AccountDetails = {
 };
 
 export type TransactionType = "DEPOSIT" | "TRANSFER" | "WITHDRAW";
+
+export type AuthUser = {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+};
