@@ -21,3 +21,8 @@ export type AuthUser = {
   firstName: string;
   lastName: string;
 };
+
+export type LoginCredentials = {
+  email: string;
+  password: string;
+};
