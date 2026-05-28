@@ -6,9 +6,10 @@ import { useState } from "react";
 
 type Props = {
   isLandingPage?: boolean;
+  showAvatar?: boolean;
 };
 
-export default function Navbar({ isLandingPage }: Props) {
+export default function Navbar({ isLandingPage, showAvatar }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -22,11 +23,9 @@ export default function Navbar({ isLandingPage }: Props) {
   return (
     <>
       <div className="relative bg-white backdrop-blur-md flex items-center py-4 px-6 justify-between h-16 w-full shadow-sm">
-        <Link to="/">
-          <img src="/logo.svg" alt="website's logo" className="h-10 w-auto" />
-        </Link>
+        <img src="/logo.svg" alt="website's logo" className="h-10 w-auto" />
 
-        {!isLandingPage && <Avatar />}
+        {!isLandingPage && showAvatar && <Avatar />}
 
         {isLandingPage && (
           <>

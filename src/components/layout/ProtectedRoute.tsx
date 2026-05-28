@@ -5,7 +5,7 @@ export default function ProtectedRoute() {
   return (
     <div className="w-full min-h-screen flex flex-col bg-white">
       <header>
-        <Navbar />
+        <Navbar showAvatar={true} />
       </header>
 
       <main className="flex flex-col p-6 space-y-8">
