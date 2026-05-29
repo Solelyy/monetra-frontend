@@ -3,9 +3,13 @@ import Navbar from "./Navbar";
 import { Navigate, Outlet } from "react-router-dom";
 
 export default function ProtectedRoute() {
-  const { data: user, isError } = useCurrentUser();
+  const { data: user, isLoading, isError } = useCurrentUser(true);
 
-  if (isError || !user) {
+  if (isLoading) {
+    return null;
+  }
+
+  if (!user || isError) {
     return <Navigate to="/login" replace />;
   }
 

@@ -14,13 +14,13 @@ export default function Actions() {
       icon: ArrowUpRight,
       label: "Withdraw",
       description: "Cash out",
-      route: "withdraw",
+      route: "/withdraw",
     },
     {
       icon: Send,
       label: "Transfer",
       description: "Send money",
-      route: "transfer",
+      route: "/transfer",
     },
   ];
 
