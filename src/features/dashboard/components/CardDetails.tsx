@@ -1,7 +1,7 @@
 import { PhilippinePeso, Wallet2 } from "lucide-react";
 
 type Props = {
-  accountNumber: number;
+  accountNumber: string;
   accountBalance: number;
 };
 

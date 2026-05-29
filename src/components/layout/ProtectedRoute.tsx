@@ -1,7 +1,14 @@
+import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
 import Navbar from "./Navbar";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 export default function ProtectedRoute() {
+  const { data: user, isError } = useCurrentUser();
+
+  if (isError || !user) {
+    return <Navigate to="/login" replace />;
+  }
+
   return (
     <div className="w-full min-h-screen flex flex-col bg-white">
       <header>

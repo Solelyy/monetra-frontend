@@ -8,14 +8,17 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
-import type { Transaction } from "../../../lib/general-types";
+import type { AccountDetails, Transaction } from "../../../lib/general-types";
+import { maskAccountNumber } from "@/lib/maskAccountNumber";
 
 type RecentTransactionsProps = {
   recentTransactions?: Transaction[];
+  accountNumber: AccountDetails["accountNumber"];
 };
 
 export default function RecentTransactions({
   recentTransactions,
+  accountNumber,
 }: RecentTransactionsProps) {
   const getTransactionIcon = (type: Transaction["type"]) => {
     switch (type) {
@@ -31,6 +34,39 @@ export default function RecentTransactions({
   };
 
   const hasTransactions = (recentTransactions?.length ?? 0) > 0;
+
+  const transactionTitle = (transaction: Transaction) => {
+    switch (transaction.type) {
+      case "DEPOSIT":
+        return "Deposit";
+      case "WITHDRAW":
+        return "Withdraw";
+      case "TRANSFER":
+        const isReceiver = transaction.receiverAccountNumber === accountNumber;
+        if (isReceiver) {
+          return `Transfer from ${maskAccountNumber(transaction.senderAccountNumber)}`;
+        }
+        return `Transfer to ${maskAccountNumber(transaction.receiverAccountNumber)}`;
+      default:
+        return "Transaction";
+    }
+  };
+
+  const isPositiveTransaction = (transaction: Transaction) => {
+    switch (transaction.type) {
+      case "DEPOSIT":
+        return true;
+
+      case "WITHDRAW":
+        return false;
+
+      case "TRANSFER":
+        return transaction.receiverAccountNumber === accountNumber;
+
+      default:
+        return false;
+    }
+  };
 
   return (
     <Card className="flex h-full max-h-100 flex-col border border-border/60 shadow-sm">
@@ -64,8 +100,7 @@ export default function RecentTransactions({
         {hasTransactions &&
           recentTransactions!.map((transaction) => {
             const Icon = getTransactionIcon(transaction.type);
-            const isDeposit = transaction.type === "DEPOSIT";
-
+            const isPositive = isPositiveTransaction(transaction);
             return (
               <div
                 key={transaction.id}
@@ -81,7 +116,7 @@ export default function RecentTransactions({
 
                   <div>
                     <p className="text-sm font-semibold text-foreground text-left">
-                      {transaction.description}
+                      {transactionTitle(transaction)}
                     </p>
 
                     <p className="text-xs text-muted-foreground text-left">
@@ -99,12 +134,12 @@ export default function RecentTransactions({
 
                 <p
                   className={`text-sm font-semibold ${
-                    isDeposit
+                    isPositive
                       ? "text-emerald-600 dark:text-emerald-400"
                       : "text-foreground"
                   }`}
                 >
-                  {isDeposit ? "+" : "-"}₱
+                  {isPositive ? "+" : "-"}₱
                   {transaction.amount.toLocaleString("en-PH", {
                     minimumFractionDigits: 2,
                   })}

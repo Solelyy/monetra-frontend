@@ -38,15 +38,10 @@ export default function LoginForm() {
 
   const onSubmit = async (data: LoginCredentials) => {
     try {
-      const result = await loginMutation.mutateAsync(data);
-
-      if (!result.user) {
-        toast.error(result.error || "Invalid credentials");
-        return;
-      }
+      await loginMutation.mutateAsync(data);
 
       setIsRedirecting(true);
-      navigate("/dashboard");
+      navigate("/dashboard", { replace: true });
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : "Something went wrong",
