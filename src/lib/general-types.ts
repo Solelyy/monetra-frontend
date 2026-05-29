@@ -2,12 +2,14 @@ export type Transaction = {
   id: string;
   type: TransactionType;
   amount: number;
-  description: string;
+  note?: string;
   timestamp: string;
+  senderAccountNumber?: string;
+  receiverAccountNumber?: string;
 };
 
 export type AccountDetails = {
-  accountNumber?: number;
+  accountNumber?: string;
   accountName?: string;
   accountBalance?: number;
   recentTransactions?: Transaction[];

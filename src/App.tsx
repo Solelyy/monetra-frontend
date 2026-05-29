@@ -8,13 +8,17 @@ import ProtectedRoute from "./components/layout/ProtectedRoute";
 import HomePage from "./components/layout/HomePage";
 import Login from "./features/auth/components/Login";
 import Signup from "./features/auth/components/Signup";
+import PublicRoute from "./components/layout/PublicRoute";
 
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route element={<PublicRoute />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Route>
+
       <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/deposit" element={<Deposit />} />

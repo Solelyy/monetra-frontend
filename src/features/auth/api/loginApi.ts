@@ -3,7 +3,7 @@ import type { LoginCredentials } from "@/lib/general-types";
 
 export async function loginApi(data: LoginCredentials) {
   try {
-    const response = await fetch(`${API_BASE_URL}/`, {
+    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: "POST",
       credentials: "include",
       body: JSON.stringify(data),

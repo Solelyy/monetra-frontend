@@ -16,7 +16,7 @@ export default function CardAction({
       <CardContent className="flex flex-col space-y-4">
         <div>
           <CardAccount
-            accountNumber={accountNumber ?? 0}
+            accountNumber={accountNumber ?? "0"}
             accountBalance={accountBalance ?? 0}
           />
         </div>
