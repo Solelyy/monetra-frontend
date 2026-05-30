@@ -6,6 +6,8 @@ import { useDashboard } from "../useDashboard";
 export default function Dashboard() {
   const { data: account } = useDashboard();
 
+  console.log(account);
+
   return (
     <>
       <Greeting name={account?.accountName} />
