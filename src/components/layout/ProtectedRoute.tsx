@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import { Navigate, Outlet } from "react-router-dom";
 
 export default function ProtectedRoute() {
-  const { data: user, isLoading, isError } = useCurrentUser(true);
+  const { data: user, isLoading, isError } = useCurrentUser();
 
   if (isLoading) {
     return null;
