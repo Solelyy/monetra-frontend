@@ -11,12 +11,12 @@ import { Button } from "@/components/ui/button";
 
 import { Link } from "react-router-dom";
 
-import type { DepositReceiptData } from "@/features/deposit/types";
 import { formatDateTime } from "@/lib/date-format";
-import type { TransactionType } from "@/lib/general-types";
+import type { TransactionType } from "@/lib/types/transaction";
+import type { TransactionReceipt } from "@/lib/types/transaction";
 
 type Props = {
-  receipt: DepositReceiptData;
+  receipt: TransactionReceipt;
   type: TransactionType;
 };
 

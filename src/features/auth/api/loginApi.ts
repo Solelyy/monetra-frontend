@@ -1,5 +1,5 @@
 import { API_BASE_URL } from "@/lib/api";
-import type { LoginCredentials } from "@/lib/general-types";
+import type { LoginCredentials } from "@/lib/types/auth";
 
 export async function loginApi(data: LoginCredentials) {
   try {

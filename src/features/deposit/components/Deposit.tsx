@@ -2,11 +2,11 @@ import { useState } from "react";
 
 import DepositForm from "./DepositForm";
 
-import type { DepositReceiptData } from "@/features/deposit/types";
+import type { TransactionReceipt } from "@/lib/types/transaction";
 import Receipt from "@/components/shared/Receipt";
 
 export default function Deposit() {
-  const [receipt, setReceipt] = useState<DepositReceiptData | null>(null);
+  const [receipt, setReceipt] = useState<TransactionReceipt | null>(null);
 
   if (receipt) {
     return <Receipt receipt={receipt} type="DEPOSIT" />;

@@ -1,12 +1,4 @@
-export type Transaction = {
-  id: number;
-  type: TransactionType;
-  amount: number;
-  note?: string;
-  timestamp: string;
-  senderAccountNumber?: string;
-  receiverAccountNumber?: string;
-};
+import type { Transaction } from "./transaction";
 
 export type AccountDetails = {
   accountNumber?: string;
@@ -14,8 +6,6 @@ export type AccountDetails = {
   accountBalance?: number;
   recentTransactions?: Transaction[];
 };
-
-export type TransactionType = "DEPOSIT" | "TRANSFER" | "WITHDRAW";
 
 export type AuthUser = {
   id: number;

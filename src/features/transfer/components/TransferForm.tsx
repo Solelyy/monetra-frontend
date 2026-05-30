@@ -14,12 +14,12 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 import { useTransferMutation } from "../useTransferMutation";
-import type { DepositReceiptData } from "@/features/deposit/types";
+import type { TransactionReceipt } from "@/lib/types/transaction";
 import { toast } from "sonner";
 import type { TransferPayload } from "../types";
 
 type Props = {
-  onSuccess: (receipt: DepositReceiptData) => void;
+  onSuccess: (receipt: TransactionReceipt) => void;
 };
 
 export default function TransferForm({ onSuccess }: Props) {
@@ -58,11 +58,11 @@ export default function TransferForm({ onSuccess }: Props) {
       });
 
       onSuccess({
-        amount: result.amount,
-        referenceNumber: result.referenceNumber,
-        timestamp: result.timestamp,
-        recipientAccountNumber: result.recipientAccountNumber,
-        note: result.note,
+        amount: result.receipt.amount,
+        referenceNumber: result.receipt.referenceNumber,
+        timestamp: result.receipt.timestamp,
+        recipientAccountNumber: result.receipt.recipientAccountNumber,
+        note: result.receipt.note,
       });
     } catch (e) {
       toast.error("Unable to transfer. Please try again.");

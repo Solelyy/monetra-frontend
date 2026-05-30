@@ -8,7 +8,8 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
-import type { AccountDetails, Transaction } from "../../../lib/general-types";
+import type { AccountDetails } from "../../../lib/types/auth";
+import type { Transaction } from "@/lib/types/transaction";
 import { maskAccountNumber } from "@/lib/maskAccountNumber";
 
 type RecentTransactionsProps = {

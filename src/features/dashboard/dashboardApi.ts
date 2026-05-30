@@ -1,4 +1,4 @@
-import type { AccountDetails } from "../../lib/general-types";
+import type { AccountDetails } from "../../lib/types/auth";
 import { API_BASE_URL } from "@/lib/api";
 
 const dummyAccount: AccountDetails = {
