@@ -14,11 +14,11 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 import { useWithdrawMutation } from "../useWithdrawMutation";
-import type { DepositReceiptData } from "@/features/deposit/types";
+import type { TransactionReceipt } from "@/lib/types/transaction";
 import { toast } from "sonner";
 
 type Props = {
-  onSuccess: (receipt: DepositReceiptData) => void;
+  onSuccess: (receipt: TransactionReceipt) => void;
 };
 
 export default function WithdrawForm({ onSuccess }: Props) {
@@ -46,9 +46,9 @@ export default function WithdrawForm({ onSuccess }: Props) {
       const result = await mutateAsync(parsedAmount);
 
       onSuccess({
-        amount: result.amount,
-        referenceNumber: result.referenceNumber,
-        timestamp: result.timestamp,
+        amount: result.receipt.amount,
+        referenceNumber: result.receipt.referenceNumber,
+        timestamp: result.receipt.timestamp,
       });
     } catch (e) {
       toast.error("Unable to withdraw. Please try again.");

@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/field";
 import { FormMessage } from "@/components/ui/form-message";
 import { Input } from "@/components/ui/input";
-import type { LoginCredentials } from "@/lib/general-types";
+import type { LoginCredentials } from "@/lib/types/auth";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";

@@ -1,5 +1,5 @@
 import { API_BASE_URL } from "@/lib/api";
-import type { DepositResponse } from "../deposit/types";
+import type { TransactionResponse } from "@/lib/types/transaction";
 import type { TransferPayload } from "./types";
 
 const USE_MOCK = true;
@@ -9,12 +9,14 @@ async function mockTransfer(amount: number) {
 
   return {
     success: true,
-    amount,
     message: "Transfer successful",
-    timestamp: "2026-05-24T15:05:12Z",
-    referenceNumber: "12390099",
-    note: "pambili skincare",
-    recipientAccountNumber: "0612345655",
+    receipt: {
+      amount,
+      timestamp: "2026-05-24T15:05:12Z",
+      referenceNumber: "12390099",
+      note: "pambili skincare",
+      recipientAccountNumber: "0612345655",
+    },
   };
 }
 
@@ -22,7 +24,7 @@ export async function transferApi({
   amount,
   recipientAccountNumber,
   note,
-}: TransferPayload): Promise<DepositResponse> {
+}: TransferPayload): Promise<TransactionResponse> {
   if (USE_MOCK) {
     return mockTransfer(amount);
   }

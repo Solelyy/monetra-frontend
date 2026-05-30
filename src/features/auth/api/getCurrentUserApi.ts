@@ -1,5 +1,5 @@
 import { API_BASE_URL } from "@/lib/api";
-import type { AuthUser } from "@/lib/general-types";
+import type { AuthUser } from "@/lib/types/auth";
 
 const mockUser: AuthUser = {
   id: 1,
