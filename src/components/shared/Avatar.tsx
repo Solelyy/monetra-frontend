@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 export default function Avatar() {
-  const { data: user } = useCurrentUser(true);
+  const { data: user } = useCurrentUser();
   const logoutMutation = useLogoutMutation();
   const navigate = useNavigate();
 
