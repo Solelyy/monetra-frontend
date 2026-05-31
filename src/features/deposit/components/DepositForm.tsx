@@ -115,7 +115,7 @@ export default function DepositForm({ onSuccess }: Props) {
 
           <CardFooter className="mt-auto flex gap-2 border-t px-6 py-4">
             <div className="flex-1">
-              <Link to="/">
+              <Link to="/dashboard">
                 <Button
                   type="button"
                   variant="secondary"
