@@ -100,7 +100,7 @@ export default function Receipt({ receipt, type }: Props) {
         </CardContent>
 
         <CardFooter className="mt-auto border-t px-6 py-4">
-          <Link to="/" className="w-full">
+          <Link to="/dashboard" className="w-full">
             <Button className="w-full" size="lg">
               Back to Dashboard
             </Button>
