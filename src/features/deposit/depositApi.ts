@@ -32,7 +32,8 @@ export async function depositApi(amount: number): Promise<TransactionResponse> {
   });
 
   if (!response.ok) {
-    throw new Error("Unable to deposit");
+    const errorData = await response.json();
+    throw new Error(errorData ?? "Unable to deposit");
   }
 
   const result = await response.json();

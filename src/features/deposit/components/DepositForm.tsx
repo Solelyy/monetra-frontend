@@ -52,8 +52,10 @@ export default function DepositForm({ onSuccess }: Props) {
         timestamp: result.receipt.timestamp,
       });
     } catch (e) {
-      toast.error("Unable to deposit. Please try again.");
-      console.error(e);
+      e instanceof Error
+        ? toast.error(e.message)
+        : toast.error("Unable to withdraw, please try again.");
+      console.error(e instanceof Error ? e.stack : e);
     }
   };
 

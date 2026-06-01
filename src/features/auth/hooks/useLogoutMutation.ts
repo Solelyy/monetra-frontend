@@ -9,7 +9,9 @@ export function useLogoutMutation() {
 
     onSuccess: async () => {
       await queryClient.cancelQueries({ queryKey: ["auth-user"] });
+      await queryClient.cancelQueries({ queryKey: ["account-details"] });
       queryClient.removeQueries({ queryKey: ["auth-user"] });
+      queryClient.removeQueries({ queryKey: ["account-details"] });
     },
   });
 }

@@ -69,6 +69,30 @@ export default function RecentTransactions({
     }
   };
 
+  const formatTransactionDate = (timestamp: string) => {
+    const date = new Date(timestamp);
+    const today = new Date();
+
+    const isToday =
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear();
+
+    if (isToday) {
+      return `Today, ${date.toLocaleTimeString("en-PH", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      })}`;
+    }
+
+    return date.toLocaleDateString("en-PH", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  };
+
   return (
     <Card className="flex h-full max-h-100 flex-col border border-border/60 shadow-sm">
       <CardHeader className="flex flex-row items-center justify-between">
@@ -121,14 +145,7 @@ export default function RecentTransactions({
                     </p>
 
                     <p className="text-xs text-muted-foreground text-left">
-                      {new Date(transaction.timestamp).toLocaleDateString(
-                        "en-PH",
-                        {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        },
-                      )}
+                      {formatTransactionDate(transaction.timestamp)}
                     </p>
                   </div>
                 </div>

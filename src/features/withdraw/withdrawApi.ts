@@ -1,7 +1,7 @@
 import { API_BASE_URL } from "@/lib/api";
 import type { TransactionResponse } from "@/lib/types/transaction";
 
-const USE_MOCK = true;
+const USE_MOCK = false;
 
 async function mockWithdraw(amount: number) {
   await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -24,19 +24,22 @@ export async function withdrawApi(
     return mockWithdraw(amount);
   }
 
-  const response = await fetch(`${API_BASE_URL}/`, {
+  const response = await fetch(`${API_BASE_URL}/api/accounts/withdraw`, {
     method: "POST",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(amount),
+    body: JSON.stringify({ amount }),
   });
 
-  const result = await response.json();
   if (!response.ok) {
-    throw new Error("Unable to withdraw");
+    const errorData = await response.json();
+
+    throw new Error(errorData.message ?? "Unable to withdraw");
   }
+
+  const result = await response.json();
 
   console.log("Withdraw response: ", result);
 
