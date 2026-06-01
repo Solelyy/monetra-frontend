@@ -7,7 +7,7 @@ export default function Transfer() {
   const [receipt, setReceipt] = useState<TransactionReceipt | null>(null);
 
   if (receipt) {
-    return <Receipt receipt={receipt} type="TRANSFER" />;
+    return <Receipt receipt={receipt} type="TRANSFER_OUT" />;
   }
 
   return (

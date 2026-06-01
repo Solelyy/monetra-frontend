@@ -9,7 +9,7 @@ async function mockDeposit(amount: number) {
   return {
     success: true,
     message: "Deposit successful",
-    receipt: {
+    data: {
       amount,
       timestamp: "2026-05-24T15:05:12Z",
       referenceNumber: "12390099",

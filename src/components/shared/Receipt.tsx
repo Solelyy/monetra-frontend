@@ -24,9 +24,9 @@ export default function Receipt({ receipt, type }: Props) {
   const title =
     type === "DEPOSIT"
       ? "Deposit"
-      : type === "TRANSFER"
-        ? "Transfer"
-        : "Withdrawal";
+      : type === "WITHDRAW"
+        ? "Withdrawal"
+        : "Transfer";
 
   return (
     <div className="flex min-h-screen items-start justify-center px-4 pt-5">
@@ -43,16 +43,28 @@ export default function Receipt({ receipt, type }: Props) {
 
         <CardContent className="flex flex-1 flex-col justify-center">
           <div className="space-y-4 rounded-lg border p-4">
-            {type === "TRANSFER" && (
-              <div className="flex items-start justify-between gap-4">
-                <p className="text-sm text-muted-foreground whitespace-nowrap shrink-0">
-                  Recipient Account No.
-                </p>
+            {type === "TRANSFER_OUT" && (
+              <>
+                <div className="flex items-start justify-between gap-4">
+                  <p className="text-sm text-muted-foreground whitespace-nowrap shrink-0">
+                    Recipient Account No.
+                  </p>
 
-                <p className="text-sm font-medium text-right wrap-break-word min-w-0">
-                  {receipt.recipientAccountNumber}
-                </p>
-              </div>
+                  <p className="text-sm font-medium text-right wrap-break-word min-w-0">
+                    {receipt.recipientAccountNumber}
+                  </p>
+                </div>
+
+                <div className="flex items-start justify-between gap-4">
+                  <p className="text-sm text-muted-foreground whitespace-nowrap shrink-0">
+                    Account Name
+                  </p>
+
+                  <p className="text-sm font-medium text-right wrap-break-word min-w-0">
+                    {receipt.recipientAccountName}
+                  </p>
+                </div>
+              </>
             )}
 
             <div className="flex items-start justify-between gap-4">
@@ -65,7 +77,7 @@ export default function Receipt({ receipt, type }: Props) {
               </p>
             </div>
 
-            {type === "TRANSFER" && receipt.note && (
+            {type === "TRANSFER_OUT" && receipt.note && (
               <div className="flex items-start justify-between gap-4">
                 <p className="text-sm text-muted-foreground whitespace-nowrap shrink-0">
                   Note

@@ -24,7 +24,6 @@ export default function Dashboard() {
         <div className="flex-1">
           <RecentTransactions
             recentTransactions={account?.recentTransactions}
-            accountNumber={account?.accountNumber}
           />
         </div>
       </div>
