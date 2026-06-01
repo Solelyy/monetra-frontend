@@ -2,7 +2,7 @@ import { API_BASE_URL } from "@/lib/api";
 import type { TransactionResponse } from "@/lib/types/transaction";
 import type { TransferPayload } from "./types";
 
-const USE_MOCK = true;
+const USE_MOCK = false;
 
 async function mockTransfer(amount: number) {
   await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -10,7 +10,7 @@ async function mockTransfer(amount: number) {
   return {
     success: true,
     message: "Transfer successful",
-    receipt: {
+    data: {
       amount,
       timestamp: "2026-05-24T15:05:12Z",
       referenceNumber: "12390099",
@@ -29,7 +29,7 @@ export async function transferApi({
     return mockTransfer(amount);
   }
 
-  const response = await fetch(`${API_BASE_URL}/`, {
+  const response = await fetch(`${API_BASE_URL}/api/accounts/transfer`, {
     method: "POST",
     credentials: "include",
     headers: {
@@ -38,10 +38,13 @@ export async function transferApi({
     body: JSON.stringify({ amount, recipientAccountNumber, note }),
   });
 
-  const result = await response.json();
   if (!response.ok) {
-    throw new Error("Unable to transfer");
+    const errorData = await response.json();
+
+    throw new Error(errorData.message ?? "Unable to transfer");
   }
+
+  const result = await response.json();
 
   console.log("Transfer response: ", result);
 

@@ -2,24 +2,22 @@ import {
   ArrowDownLeft,
   ArrowUpRight,
   ArrowRightLeft,
+  ArrowBigDownDash,
   Send,
 } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
-import type { AccountDetails } from "../../../lib/types/auth";
 import type { Transaction } from "@/lib/types/transaction";
 import { maskAccountNumber } from "@/lib/maskAccountNumber";
 
 type RecentTransactionsProps = {
   recentTransactions?: Transaction[];
-  accountNumber: AccountDetails["accountNumber"];
 };
 
 export default function RecentTransactions({
   recentTransactions,
-  accountNumber,
 }: RecentTransactionsProps) {
   const getTransactionIcon = (type: Transaction["type"]) => {
     switch (type) {
@@ -27,8 +25,10 @@ export default function RecentTransactions({
         return ArrowDownLeft;
       case "WITHDRAW":
         return ArrowUpRight;
-      case "TRANSFER":
+      case "TRANSFER_OUT":
         return Send;
+      case "TRANSFER_IN":
+        return ArrowBigDownDash;
       default:
         return ArrowRightLeft;
     }
@@ -42,11 +42,9 @@ export default function RecentTransactions({
         return "Deposit";
       case "WITHDRAW":
         return "Withdraw";
-      case "TRANSFER":
-        const isReceiver = transaction.receiverAccountNumber === accountNumber;
-        if (isReceiver) {
-          return `Transfer from ${maskAccountNumber(transaction.senderAccountNumber)}`;
-        }
+      case "TRANSFER_IN":
+        return `Transfer from ${maskAccountNumber(transaction.senderAccountNumber)}`;
+      case "TRANSFER_OUT":
         return `Transfer to ${maskAccountNumber(transaction.receiverAccountNumber)}`;
       default:
         return "Transaction";
@@ -61,8 +59,11 @@ export default function RecentTransactions({
       case "WITHDRAW":
         return false;
 
-      case "TRANSFER":
-        return transaction.receiverAccountNumber === accountNumber;
+      case "TRANSFER_IN":
+        return true;
+
+      case "TRANSFER_OUT":
+        return false;
 
       default:
         return false;

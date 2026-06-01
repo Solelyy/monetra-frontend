@@ -47,9 +47,9 @@ export default function DepositForm({ onSuccess }: Props) {
       const result = await mutateAsync(parsedAmount);
 
       onSuccess({
-        amount: result.receipt.amount,
-        referenceNumber: result.receipt.referenceNumber,
-        timestamp: result.receipt.timestamp,
+        amount: result.data.amount,
+        referenceNumber: result.data.referenceNumber,
+        timestamp: result.data.timestamp,
       });
     } catch (e) {
       e instanceof Error

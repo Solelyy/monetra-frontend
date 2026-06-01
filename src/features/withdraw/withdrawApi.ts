@@ -9,7 +9,7 @@ async function mockWithdraw(amount: number) {
   return {
     success: true,
     message: "Withdraw successful",
-    receipt: {
+    data: {
       timestamp: "2026-05-24T15:05:12Z",
       referenceNumber: "12390099",
       amount,

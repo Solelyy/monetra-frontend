@@ -39,7 +39,7 @@ export default function TransferForm({ onSuccess }: Props) {
     parsedAmount >= MIN_AMOUNT &&
     parsedAmount <= MAX_AMOUNT;
 
-  const isRecipientValid = recipient.length === 10;
+  const isRecipientValid = recipient.length === 12;
 
   const isFormValid = isAmountValid && isRecipientValid;
 
@@ -58,15 +58,17 @@ export default function TransferForm({ onSuccess }: Props) {
       });
 
       onSuccess({
-        amount: result.receipt.amount,
-        referenceNumber: result.receipt.referenceNumber,
-        timestamp: result.receipt.timestamp,
-        recipientAccountNumber: result.receipt.recipientAccountNumber,
-        note: result.receipt.note,
+        amount: result.data.amount,
+        referenceNumber: result.data.referenceNumber,
+        timestamp: result.data.timestamp,
+        recipientAccountNumber: result.data.recipientAccountNumber,
+        note: result.data.note,
       });
     } catch (e) {
-      toast.error("Unable to transfer. Please try again.");
-      console.error(e);
+      e instanceof Error
+        ? toast.error(e.message)
+        : toast.error("Unable to withdraw, please try again.");
+      console.error(e instanceof Error ? e.stack : e);
     }
   };
 
@@ -98,17 +100,17 @@ export default function TransferForm({ onSuccess }: Props) {
                 onChange={(event) => {
                   const digitsOnly = event.target.value.replace(/\D/g, "");
 
-                  if (digitsOnly.length <= 10) {
+                  if (digitsOnly.length <= 12) {
                     setRecipient(digitsOnly);
                   }
                 }}
-                placeholder="Enter 10-digit account number"
+                placeholder="Enter 12-digit account number"
                 required
               />
 
-              {recipient.trim().length > 0 && recipient.length !== 10 ? (
+              {recipient.trim().length > 0 && recipient.length !== 12 ? (
                 <p className="text-destructive text-xs text-left">
-                  Account number must be 10 digits
+                  Account number must be 12 digits
                 </p>
               ) : null}
             </div>

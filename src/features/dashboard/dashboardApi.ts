@@ -16,7 +16,7 @@ const dummyAccount: AccountDetails = {
     },
     {
       id: 2,
-      type: "TRANSFER",
+      type: "TRANSFER_OUT",
       amount: 1500,
       timestamp: "2026-05-23T14:15:00",
       senderAccountNumber: "12345789099",
@@ -30,7 +30,7 @@ const dummyAccount: AccountDetails = {
     },
     {
       id: 4,
-      type: "TRANSFER",
+      type: "TRANSFER_OUT",
       amount: 750,
       timestamp: "2026-05-21T10:20:00",
       senderAccountNumber: "123456789101",

@@ -8,7 +8,11 @@ export type Transaction = {
   receiverAccountNumber?: string;
 };
 
-export type TransactionType = "DEPOSIT" | "TRANSFER" | "WITHDRAW";
+export type TransactionType =
+  | "DEPOSIT"
+  | "TRANSFER_IN"
+  | "TRANSFER_OUT"
+  | "WITHDRAW";
 
 export type TransactionReceipt = {
   amount: number;
@@ -16,10 +20,11 @@ export type TransactionReceipt = {
   timestamp: string;
   recipientAccountNumber?: string;
   note?: string;
+  recipientAccountName?: string;
 };
 
 export type TransactionResponse = {
   success: boolean;
   message: string;
-  receipt: TransactionReceipt;
+  data: TransactionReceipt;
 };
