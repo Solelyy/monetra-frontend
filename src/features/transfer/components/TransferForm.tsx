@@ -62,6 +62,7 @@ export default function TransferForm({ onSuccess }: Props) {
         referenceNumber: result.data.referenceNumber,
         timestamp: result.data.timestamp,
         recipientAccountNumber: result.data.recipientAccountNumber,
+        recipientAccountName: result.data.recipientAccountName,
         note: result.data.note,
       });
     } catch (e) {
