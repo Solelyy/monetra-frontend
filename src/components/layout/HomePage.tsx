@@ -38,11 +38,11 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-emerald-50 to-white">
       <Navbar isLandingPage={true} />
 
       {/* Hero Section */}
-      <section className="px-6 py-16 md:py-24 lg:py-32">
+      <section className="px-6 py-16 md:py-22 lg:py-30">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             {/* Left Content */}
@@ -56,10 +56,12 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <p className="text-lg text-gray-600 leading-relaxed max-w-lg pb-2">
-                A simple digital wallet system for managing deposits,
-                withdrawals, transfers, and transaction tracking.
-              </p>
+              <div className="mx-auto flex justify-center">
+                <p className="text-lg text-gray-600 leading-relaxed max-w-lg pb-2 text-center">
+                  A simple digital wallet system for managing deposits,
+                  withdrawals, transfers, and transaction tracking.
+                </p>
+              </div>
 
               <div className="flex gap-4 mx-10 py-4">
                 <Link to="/login" className="flex-1">
@@ -87,10 +89,10 @@ export default function HomePage() {
             <div className="flex justify-center">
               <div className="relative w-full max-w-sm">
                 {/* Decorative Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-3xl blur-2xl opacity-50"></div>
+                <div className="absolute inset-0 bg-linear-to-b from-emerald-100 to-emerald-50 rounded-3xl blur-2xl opacity-50"></div>
 
                 {/* Mock Card */}
-                <div className="relative bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-3xl p-8 text-white shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                <div className="relative bg-linear-to-br from-emerald-600 to-emerald-700 rounded-3xl p-8 text-white shadow-2xl transform hover:scale-105 transition-transform duration-300">
                   <div className="space-y-12">
                     {/* Card Header */}
                     <div className="flex justify-between items-center">
@@ -154,7 +156,7 @@ export default function HomePage() {
               return (
                 <div
                   key={index}
-                  className="group p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                  className="group p-8 rounded-2xl bg-linear-to-br from-gray-50 to-gray-100 border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 cursor-pointer"
                 >
                   <div className="flex items-center justify-start gap-4 mb-4 ">
                     <div className="w-12 h-12 md:w-14 md:h-14 bg-emerald-100 rounded-lg md:rounded-xl flex items-center justify-center group-hover:bg-emerald-600 transition-colors duration-300">
@@ -179,7 +181,7 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="px-6 py-16 md:py-20 flex flex-col">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-r from-emerald-50 to-emerald-100 rounded-3xl p-12 md:p-16 border border-emerald-300">
+          <div className="bg-linear-to-r from-emerald-50 to-emerald-100 rounded-3xl p-12 md:p-16 border border-emerald-300">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Ready to Get Started?
             </h2>
