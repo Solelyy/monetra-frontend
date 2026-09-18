@@ -41,4 +41,4 @@ This project is mainly for educational and practice purposes.
 It is not intended for production use or real financial transactions.
 
 ## Status
-Currently under development.
+It is what it is : ) 
